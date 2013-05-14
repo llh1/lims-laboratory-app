@@ -1,0 +1,11 @@
+---
+  port: 8201
+  reload_strategy: rolling
+  jruby_compat_version: 1.9
+  root_dir: $HOME/Developer/lims-laboratory-app
+  jruby_min_runtimes: 1
+  jruby_max_runtimes: 1
+  extensions:
+    daemon:
+      pid_file: $HOME/Developer/lims-laboratory-app/pids/trinidad_8201.pid
+      jvm_args: -XX:ReservedCodeCacheSize=128m -server -Xmx4096M -Xmn1024M -Xms4096M -XX:MaxPermSize=256m

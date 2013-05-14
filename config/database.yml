@@ -2,7 +2,7 @@ development_:
   adapter: postgres
   database: core
 
-development:
+__development:
   adapter: sqlite
   database: dev.db
 
@@ -10,14 +10,11 @@ test:
   adapter: sqlite
   database: test.db
 
-development__:
-  adapter: mysql2
+development:
+  adapter: 'jdbc'
   encoding: utf8
   charset: utf8
-  database: development
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  url: 'mysql://localhost/development?user=root&password=root'
 
 test__:
   adapter: mysql2
