@@ -108,8 +108,10 @@ end
 shared_context "clean store" do
   after(:each) do
     store.with_session(:backend_application_id => "lims-laboratory-app/spec", :parameters => {action: "purge"}) do
-    %w{items orders batches searches labels labellables tube_aliquots filter_paper_aliquots spin_column_aliquots windows wells lanes fluidigm_wells tag_group_associations aliquots tube_rack_slots tube_racks tubes spin_columns gels plates flowcells filter_papers fluidigms samples oligos snp_assays tag_groups studies users locations uuid_resources }.each do |table|
+    %w{items orders batches searches labels labellables tube_aliquots filter_paper_aliquots spin_column_aliquots windows wells lanes fluidigm_wells tag_group_associations aliquots tube_rack_slots tube_racks tubes spin_columns gels plates flowcells filter_papers fluidigms samples oligos snp_assays tag_groups studies users locations uuid_resources}.each do |table|
+      revision_table = "#{table}_revision".to_sym
       db[table.to_sym].delete
+      db[revision_table].delete if db.table_exists?(revision_table)
     end
   end
     db.disconnect
